@@ -1,0 +1,25 @@
+
+version: '2.1'
+services:
+  #docker-compose build image
+  image:
+    build:
+      context: image
+      dockerfile: Dockerfile
+      args:
+      - IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER}
+      #- IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER:-http://o9wbz99tz.bkt.clouddn.com}
+      - IMAGE_ARG_MAVEN_VERSION=${IMAGE_ARG_MAVEN_VERSION:-3.5.3}
+    image: ${IMAGE_PREFIX:-cirepo}/${IMAGE_NAME:-alpine-maven}:${IMAGE_TAG:-3.5.3}
+  #docker-compose build dumper
+  dumper:
+    build:
+      context: dumper
+      dockerfile: Dockerfile_dumper
+    image: tmp/dumper:latest
+  #docker-compose build archive
+  archive:
+    build:
+      context: .
+      dockerfile: Dockerfile_archive
+    image: ${IMAGE_PREFIX:-cirepo}/${IMAGE_NAME:-alpine-maven}:${IMAGE_TAG:-3.5.3}-archive
