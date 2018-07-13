@@ -10,7 +10,7 @@ WORK_DIR=$(pwd)
 if [ -n "${CI_OPT_DOCKER_REGISTRY_PASS}" ] && [ -n "${CI_OPT_DOCKER_REGISTRY_USER}" ]; then echo ${CI_OPT_DOCKER_REGISTRY_PASS} | docker login --password-stdin -u="${CI_OPT_DOCKER_REGISTRY_USER}" docker.io; fi
 
 export IMAGE_PREFIX=${IMAGE_PREFIX:-cirepo};
-export IMAGE_NAME=${IMAGE_NAME:-alpine-maven}
+export IMAGE_NAME=${IMAGE_NAME:-maven}
 export IMAGE_TAG=${IMAGE_ARG_NODE_VERSION:-3.5.3}-alpine
 if [ "${TRAVIS_BRANCH}" != "master" ]; then export IMAGE_TAG=${IMAGE_TAG}-SNAPSHOT; fi
 
