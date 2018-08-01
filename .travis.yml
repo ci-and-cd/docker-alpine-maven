@@ -14,8 +14,8 @@ env:
   global:
   - IMAGE_ARG_FILESERVER=
   matrix:
-  - IMAGE_ARG_MAVEN_VERSION=3.5.3
   - IMAGE_ARG_MAVEN_VERSION=3.5.4
+  - IMAGE_ARG_MAVEN_VERSION=3.5.3
 
 group: edge
 #install: true

@@ -9,8 +9,8 @@ services:
       args:
       - IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER}
       #- IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER:-http://o9wbz99tz.bkt.clouddn.com}
-      - IMAGE_ARG_MAVEN_VERSION=${IMAGE_ARG_MAVEN_VERSION:-3.5.3}
-    image: ${IMAGE_PREFIX:-cirepo}/${IMAGE_NAME:-maven}:${IMAGE_TAG:-3.5.3-alpine}
+      - IMAGE_ARG_MAVEN_VERSION=${IMAGE_ARG_MAVEN_VERSION:-3.5.4}
+    image: ${IMAGE_PREFIX:-cirepo}/${IMAGE_NAME:-maven}:${IMAGE_TAG:-3.5.4-alpine}
   #docker-compose build dumper
   dumper:
     build:
@@ -22,4 +22,4 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_archive
-    image: ${IMAGE_PREFIX:-cirepo}/${IMAGE_NAME:-maven}:${IMAGE_TAG:-3.5.3-alpine}-archive
+    image: ${IMAGE_PREFIX:-cirepo}/${IMAGE_NAME:-maven}:${IMAGE_TAG:-3.5.4-alpine}-archive

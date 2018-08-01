@@ -17,14 +17,20 @@ COPY --chown=root:root docker /data
 
 
 RUN set -ex \
-  && if [ ! -f /data/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.3}-bin.tar.gz ]; then \
-       ${ARIA2C_DOWNLOAD} -d /data -o apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.3}-bin.tar.gz \
-       ${IMAGE_ARG_FILESERVER:-http://mirrors.tuna.tsinghua.edu.cn}/apache/maven/maven-3/${IMAGE_ARG_MAVEN_VERSION:-3.5.3}/binaries/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.3}-bin.tar.gz; \
+  && if [ ! -f /data/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.4}-bin.tar.gz ]; then \
+       ${ARIA2C_DOWNLOAD} -d /data -o apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.4}-bin.tar.gz \
+       ${IMAGE_ARG_FILESERVER:-http://mirrors.tuna.tsinghua.edu.cn}/apache/maven/maven-3/${IMAGE_ARG_MAVEN_VERSION:-3.5.4}/binaries/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.4}-bin.tar.gz; \
      fi \
   && mkdir -p /opt \
-  && tar xf /data/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.3}-bin.tar.gz -C /opt \
-  && ln -sf /opt/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.3} /opt/maven \
-  && rm -f /data/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.3}-bin.tar.gz
+  && tar xf /data/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.4}-bin.tar.gz -C /opt \
+  && ln -sf /opt/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.4} /opt/maven \
+  && rm -f /data/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.4}-bin.tar.gz \
+  && if [ ! -f /data/maven-profiler-2.6-shaded.jar ]; then \
+       ${ARIA2C_DOWNLOAD} -d /data -o maven-profiler-2.6-shaded.jar \
+       ${IMAGE_ARG_FILESERVER:-http://dl.bintray.com}/jcgay/maven/fr/jcgay/maven/maven-profiler/2.6/maven-profiler-2.6-shaded.jar; \
+     fi \
+  && mv /data/maven-profiler-2.6-shaded.jar /opt/maven/lib/ext/
+
 
 
 USER alpine
