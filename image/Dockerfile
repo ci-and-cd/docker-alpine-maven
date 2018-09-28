@@ -5,6 +5,7 @@ FROM cirepo/nix:2.1.1-alpine-3.8
 USER root
 
 
+ARG IMAGE_ARG_FILESERVER
 ARG IMAGE_ARG_MAVEN_VERSION
 
 
@@ -19,7 +20,7 @@ COPY --chown=root:root docker /data
 RUN set -ex \
   && if [ ! -f /data/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.4}-bin.tar.gz ]; then \
        ${ARIA2C_DOWNLOAD} -d /data -o apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.4}-bin.tar.gz \
-       ${IMAGE_ARG_FILESERVER:-http://mirrors.tuna.tsinghua.edu.cn}/apache/maven/maven-3/${IMAGE_ARG_MAVEN_VERSION:-3.5.4}/binaries/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.4}-bin.tar.gz; \
+       ${IMAGE_ARG_FILESERVER:-http://www-us.apache.org/dist}/maven/maven-3/${IMAGE_ARG_MAVEN_VERSION:-3.5.4}/binaries/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.4}-bin.tar.gz; \
      fi \
   && mkdir -p /opt \
   && tar xf /data/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.5.4}-bin.tar.gz -C /opt \
