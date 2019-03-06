@@ -19,7 +19,7 @@ COPY --chown=root:root docker /data
 
 RUN set -ex \
   && MAVEN_ARCH=apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.6.0}-bin.tar.gz \
-  && if [ ! -f /data/${MAVEN_ARCH} ]; then \
+  && if [[ ! -f /data/${MAVEN_ARCH} ]]; then \
        ${ARIA2C_DOWNLOAD} -d /data -o ${MAVEN_ARCH} \
        ${IMAGE_ARG_FILESERVER:-http://www-us.apache.org/dist}/maven/maven-3/${IMAGE_ARG_MAVEN_VERSION:-3.6.0}/binaries/${MAVEN_ARCH}; \
      fi \
@@ -28,7 +28,7 @@ RUN set -ex \
   && ln -sf /opt/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.6.0} /opt/maven \
   && rm -f /data/${MAVEN_ARCH} \
 #  ${IMAGE_ARG_FILESERVER:-http://dl.bintray.com}/jcgay/maven/fr/jcgay/maven/maven-profiler/2.6/maven-profiler-2.6-shaded.jar
-  && if [ ! -f /data/maven-profiler-2.6-shaded.jar ]; then \
+  && if [[ ! -f /data/maven-profiler-2.6-shaded.jar ]]; then \
        ${ARIA2C_DOWNLOAD} -d /data -o maven-profiler-2.6-shaded.jar \
        http://dl.bintray.com/jcgay/maven/fr/jcgay/maven/maven-profiler/2.6/maven-profiler-2.6-shaded.jar; \
      fi \
