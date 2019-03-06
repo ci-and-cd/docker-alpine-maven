@@ -12,10 +12,10 @@ branches:
 dist: trusty
 env:
   global:
-  - IMAGE_ARG_FILESERVER=http://fileserver.infra.top
+  - IMAGE_ARG_FILESERVER=https://www-us.apache.org/dist
   matrix:
-  - IMAGE_ARG_MAVEN_VERSION=3.5.4
-  - IMAGE_ARG_MAVEN_VERSION=3.5.3
+#  - IMAGE_ARG_MAVEN_VERSION=3.5.4
+  - IMAGE_ARG_MAVEN_VERSION=3.6.0
 
 group: edge
 #install: true

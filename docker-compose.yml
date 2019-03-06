@@ -8,10 +8,11 @@ services:
       dockerfile: Dockerfile
       args:
       #- IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER}
-      #- IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER:-http://mirrors.tuna.tsinghua.edu.cn/apache}
-      - IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER:-http://fileserver.infra.top}
-      - IMAGE_ARG_MAVEN_VERSION=${IMAGE_ARG_MAVEN_VERSION:-3.5.4}
-    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-maven}:${IMAGE_TAG:-3.5.4-alpine}
+      #- IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER:-https://www-us.apache.org/dist}
+      - IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER:-http://mirrors.tuna.tsinghua.edu.cn/apache}
+      #- IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER:-http://fileserver.infra.top}
+      - IMAGE_ARG_MAVEN_VERSION=${IMAGE_ARG_MAVEN_VERSION:-3.6.0}
+    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-maven}:${IMAGE_TAG:-3.6.0-alpine}
   #docker-compose build dumper
   dumper:
     build:
@@ -23,4 +24,4 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_archive
-    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-maven}:${IMAGE_TAG:-3.5.4-alpine}-archive
+    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-maven}:${IMAGE_TAG:-3.6.0-alpine}-archive
