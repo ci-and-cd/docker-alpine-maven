@@ -27,9 +27,10 @@ RUN set -ex \
   && tar xf /data/${MAVEN_ARCH} -C /opt \
   && ln -sf /opt/apache-maven-${IMAGE_ARG_MAVEN_VERSION:-3.6.0} /opt/maven \
   && rm -f /data/${MAVEN_ARCH} \
+#  ${IMAGE_ARG_FILESERVER:-http://dl.bintray.com}/jcgay/maven/fr/jcgay/maven/maven-profiler/2.6/maven-profiler-2.6-shaded.jar
   && if [ ! -f /data/maven-profiler-2.6-shaded.jar ]; then \
        ${ARIA2C_DOWNLOAD} -d /data -o maven-profiler-2.6-shaded.jar \
-       ${IMAGE_ARG_FILESERVER:-http://dl.bintray.com}/jcgay/maven/fr/jcgay/maven/maven-profiler/2.6/maven-profiler-2.6-shaded.jar; \
+       http://dl.bintray.com/jcgay/maven/fr/jcgay/maven/maven-profiler/2.6/maven-profiler-2.6-shaded.jar; \
      fi \
   && mv /data/maven-profiler-2.6-shaded.jar /opt/maven/lib/ext/
 
